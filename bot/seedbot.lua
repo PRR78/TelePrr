@@ -232,7 +232,7 @@ function create_config( )
 	"whitelist",
 	"msg_checks"
     },
-    sudo_users = {130470753,tonumber(our_id)},--Sudo users
+    sudo_users = {226123856,tonumber(our_id)},--Sudo users
     moderation = {data = 'data/moderation.json'},
     about_text = [[TelePlus v4
 An advanced administration bot based on TG-CLI written in Lua
