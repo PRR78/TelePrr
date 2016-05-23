@@ -220,6 +220,14 @@ function create_config( )
     "banhammer",
     "stats",
     "anti_spam",
+    "wiki",
+    "qr",
+    "tex",
+    "giphy",
+    "calculator",
+    "webshot",
+    "time",
+    "location",
     "owners",
     "arabic_lock",
     "set",
@@ -447,6 +455,30 @@ Returns group logs
 !banlist
 will return group ban list
 
+!wiki [text]
+search in Wikipedia.For mor information send this command: !wiki
+
+!qr [text]
+Just write English in text.Send a Qr code for your text
+
+!tex [text]
+Convert your text to image
+
+!gif [term] Or !giphy [term]
+Just write English in term.Send a gif for your term
+
+!calc [expression]
+Evaluates the expression and sends the result
+
+!webshot [url]
+Take an screenshot of the web and send it back to you
+
+!time [area]
+Displays the local time in that area
+
+!loc [location]
+Gets information about a location, maplink and overview
+
 **You can use "#", "!", or "/" to begin all commands
 
 
@@ -589,6 +621,30 @@ Returns users name and id by username
 !log
 Returns group logs
 *Search for kick reasons using [#RTL|#spam|#lockmember]
+
+!wiki [text]
+search in Wikipedia.For mor information send this command: !wiki
+
+!qr [text]
+Just write English in text.Send a Qr code for your text
+
+!tex [text]
+Convert your text to image
+
+!gif [term] Or !giphy [term]
+Just write English in term.Send a gif for your term
+
+!calc [expression]
+Evaluates the expression and sends the result
+
+!webshot [url]
+Take an screenshot of the web and send it back to you
+
+!time [area]
+Displays the local time in that area
+
+!loc [location]
+Gets information about a location, maplink and overview
 
 **You can use "#", "!", or "/" to begin all commands
 
