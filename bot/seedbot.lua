@@ -250,7 +250,7 @@ Admin
 @PHAE2099 [Developer]
 
 Special thanks to
-Amin Gorji
+Amin
 
 Our channel
 @TelePlus [Persian]
@@ -480,6 +480,9 @@ Displays the local time in that area
 !loc [location]
 Gets information about a location, maplink and overview
 
+!invite @PHAE2099
+Add bot admin (Just owner)
+
 **You can use "#", "!", or "/" to begin all commands
 
 
@@ -646,6 +649,9 @@ Displays the local time in that area
 
 !loc [location]
 Gets information about a location, maplink and overview
+
+!invite @PHAE2099
+Add bot admin (Just owner)
 
 **You can use "#", "!", or "/" to begin all commands
 
