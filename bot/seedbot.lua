@@ -225,6 +225,7 @@ function create_config( )
     "tex",
     "giphy",
     "calculator",
+    "isup",
     "webshot",
     "time",
     "location",
