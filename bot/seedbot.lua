@@ -224,6 +224,8 @@ function create_config( )
     "qr",
     "tex",
     "giphy",
+    "filter_word",
+    "anti_bot",
     "calculator",
     "isup",
     "webshot",
@@ -383,11 +385,11 @@ return group id or user id
 !help
 Returns help text
 
-!lock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict]
+!lock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict|bots]
 Lock group settings
 *rtl: Kick user if Right To Left Char. is in name*
 
-!unlock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict]
+!unlock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict|bots]
 Unlock group settings
 *rtl: Kick user if Right To Left Char. is in name*
 
@@ -581,6 +583,18 @@ Lock group settings
 Unlock group settings
 *rtl: Delete msg if Right To Left Char. is in name*
 *strict: disable strict settings enforcement (violating user will not be kicked)*
+
+!addword [Your word]
+Added a new word and delete this in group
+
+!remword [Your word]
+Clean the word in filterwords
+
+!badwords
+Show the list of filterwords
+
+!clearbadwords
+Clean the list of filterwords
 
 !mute [all|audio|gifs|photo|video|service]
 mute group message types
