@@ -225,7 +225,6 @@ function create_config( )
     "tex",
     "giphy",
     "filter_word",
-    "anti_bot",
     "calculator",
     "isup",
     "webshot",
@@ -253,6 +252,7 @@ Admin
 
 Special thanks to
 Amin
+Hadi
 
 Our channel
 @TelePlus [Persian]
