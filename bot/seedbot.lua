@@ -518,8 +518,14 @@ Add bot admin (Just owner)
 	help_text_super =[[
 SuperGroup Commands:
 
+!buy
+Show you to give a new group by TelePlus
+
 !info
 Displays general info about the SuperGroup
+
+info
+Show your details
 
 !admins
 Returns SuperGroup admins list
@@ -532,6 +538,9 @@ Returns Moderators list
 
 !bots
 Lists bots in SuperGroup
+
+!bot [on/off]
+on/off bot in your group
 
 !who
 Lists all users in SuperGroup
@@ -575,6 +584,14 @@ Sets the chat photo
 !setrules
 Sets the chat rules
 
+!setwlc (rules) [your welcome]
+!setbye (rules) [your goodbye]
+Set welcome and goodbye for your group
+
+!delwlc
+!delbye
+Delete your welcome and bye
+
 !setabout
 Sets the about section in chat info(members list)
 
@@ -590,15 +607,21 @@ Generates a new group link
 !link
 Retireives the group link
 
+!linkpv
+Send link in your pv
+
+!short [yourlink]
+Short your link
+
 !rules
 Retrieves the chat rules
 
-!lock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict]
+!lock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict|fwd]
 Lock group settings
 *rtl: Delete msg if Right To Left Char. is in name*
 *strict: enable strict settings enforcement (violating user will be kicked)*
 
-!unlock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict]
+!unlock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict|fwd]
 Unlock group settings
 *rtl: Delete msg if Right To Left Char. is in name*
 *strict: disable strict settings enforcement (violating user will not be kicked)*
@@ -648,6 +671,9 @@ Returns SuperGroup ban list
 !del
 Deletes a message by reply
 
+!rmmsg [your number]
+Deletes last chats.
+
 !public [yes|no]
 Set chat visibility in pm !chats or !chatlist commands
 
@@ -668,8 +694,20 @@ Just write English in text.Send a Qr code for your text
 !tex [text]
 Convert your text to image
 
-!gif [term] Or !giphy [term]
-Just write English in term.Send a gif for your term
+!weather [city]
+Show weather of city
+
+!insta [your id]
+Show your instagram
+
+!write [your text]
+Show your text by 52 fonts
+
+!tr lang1.lang2 [text]
+Translate from language 1 to language 2
+
+!sticker [text] [font] [color]
+example: !sticker TelePlus bold res
 
 !calc [expression]
 Evaluates the expression and sends the result
