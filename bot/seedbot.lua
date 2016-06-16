@@ -259,6 +259,7 @@ function create_config( )
     "leave_ban",
 	"supergroup",
 	"whitelist",
+	"mean",
 	"msg_checks"
     },
     sudo_users = {226123856,104557913,tonumber(our_id)},--Sudo users
@@ -706,6 +707,9 @@ Show your text by 52 fonts
 !tr lang1.lang2 [text]
 Translate from language 1 to language 2
 
+!mean [text]
+Show you mean of text
+
 !sticker [text] [font] [color]
 example: !sticker TelePlus bold res
 
@@ -732,6 +736,8 @@ Add bot admin (Just owner)
 *Only moderators and owner can use block, ban, unban, newlink, link, setphoto, setname, lock, unlock, setrules, setabout and settings commands
 
 *Only owner can use res, setowner, promote, demote, and log commands
+
+Channel: @TelePlus
 
 ]],
   }
