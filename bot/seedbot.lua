@@ -228,6 +228,7 @@ function create_config( )
     "bot_on_off",
     "lock_fwd",
     "sticker",
+    "st",
     "tr",
     "setwlc",
     "getwlc",
@@ -712,6 +713,12 @@ Show you mean of text
 
 !sticker [text] [font] [color]
 example: !sticker TelePlus bold res
+
+!sticker
+Convert picture to sticker by reply
+
+!image
+Convert sticker to picture by reply
 
 !calc [expression]
 Evaluates the expression and sends the result
