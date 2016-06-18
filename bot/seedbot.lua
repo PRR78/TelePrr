@@ -711,7 +711,7 @@ Translate from language 1 to language 2
 !mean [text]
 Show you mean of text
 
-!sticker [text] [font] [color]
+!sticker [text] [color] [font]
 example: !sticker TelePlus bold res
 
 !sticker
