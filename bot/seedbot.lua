@@ -242,6 +242,7 @@ function create_config( )
     "delplug",
     "weather",
     "writer",
+    "aparat",
     "buy",
     "info",
     "filter_word",
@@ -701,6 +702,9 @@ Show weather of city
 
 !insta [your id]
 Show your instagram
+
+!aparat [search]
+Search in aparat
 
 !write [your text]
 Show your text by 52 fonts
