@@ -231,7 +231,6 @@ function create_config( )
     "st",
     "tr",
     "setwlc",
-    "getwlc",
     "getbye",
     "setbye",
     "insta",
@@ -587,9 +586,10 @@ Sets the chat photo
 !setrules
 Sets the chat rules
 
-!setwlc (rules) [your welcome]
+!setwlc
 !setbye (rules) [your goodbye]
 Set welcome and goodbye for your group
+Learning in Channel: @TelePlus
 
 !delwlc
 !delbye
