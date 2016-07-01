@@ -223,6 +223,8 @@ function create_config( )
     "wiki",
     "qr",
     "tex",
+    "payamresan",
+    "mylink",
     "remmsg",
     "shortlink",
     "bot_on_off",
@@ -265,7 +267,7 @@ function create_config( )
     },
     sudo_users = {226123856,104557913,tonumber(our_id)},--Sudo users
     moderation = {data = 'data/moderation.json'},
-    about_text = [[TelePlus v4
+    about_text = [[TelePlus v4.1
 An advanced administration bot based on TG-CLI written in Lua
 
 Admin
@@ -528,6 +530,9 @@ Displays general info about the SuperGroup
 
 info
 Show your details
+
+!mylink
+Show your link in telegram
 
 !admins
 Returns SuperGroup admins list
