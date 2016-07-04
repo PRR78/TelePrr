@@ -218,6 +218,7 @@ function create_config( )
     "ingroup",
     "inpm",
     "banhammer",
+    "del_gban",
     "stats",
     "anti_spam",
     "wiki",
