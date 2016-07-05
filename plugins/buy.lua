@@ -14,6 +14,8 @@ function run(msg, matches)
   
 برای سفارش ضد اسپم
 به آی دی @PHAE2099 و در صورت ریپورت بودن به آیدی @pooryapv_bot در بخش تماس با ما یا  @pteleplus_bot  پیام بدهید.
+
+Channel : @TelePlus
   ]]
   end
 return {
