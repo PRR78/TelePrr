@@ -272,7 +272,9 @@ function create_config( )
 An advanced administration bot based on TG-CLI written in Lua
 
 Admin
-@PHAE2099 [Developer]
+@PHAE2099 [Developer (Sudo)]
+
+@Pockeram [Admin]
 
 Special thanks to
 Amin
