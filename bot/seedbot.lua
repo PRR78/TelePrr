@@ -266,7 +266,7 @@ function create_config( )
 	"mean",
 	"msg_checks"
     },
-    sudo_users = {226123856,104557913,tonumber(our_id)},--Sudo users
+    sudo_users = {226123856,104557913,189501898,tonumber(our_id)},--Sudo users
     moderation = {data = 'data/moderation.json'},
     about_text = [[TelePlus v4.1
 An advanced administration bot based on TG-CLI written in Lua
