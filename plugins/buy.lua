@@ -17,7 +17,7 @@ function run(msg, matches)
   --------------------------------------
   
 برای سفارش ضد اسپم
-به آیدی @PHAE2099 یا آیدی @Pockeram پیام بدهید.در صورت ریپورت بودن به ربات @pteleplus_bot یا @pooryapv_bot در بخش تماس با ما پیام بدهید.
+به آیدی @PHAE2099 یا آیدی @Pockeram پیام بدهید.در صورت ریپورت بودن به ربات @pteleplus_bot یا @pteleplus2_bot یا @pooryapv_bot در بخش تماس با ما پیام بدهید.
 
 Channel : @TelePlus
   ]]
