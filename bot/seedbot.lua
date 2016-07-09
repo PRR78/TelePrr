@@ -249,7 +249,6 @@ function create_config( )
     "info",
     "filter_word",
     "calculator",
-    "isup",
     "webshot",
     "time",
     "location",
