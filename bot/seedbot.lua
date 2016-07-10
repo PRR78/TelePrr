@@ -723,7 +723,7 @@ Translate from language 1 to language 2
 Show you mean of text
 
 !sticker [text] [color] [font]
-example: !sticker TelePlus bold res
+example: !sticker TelePlus red bold
 
 !sticker
 Convert picture to sticker by reply
