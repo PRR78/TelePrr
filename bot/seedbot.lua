@@ -222,21 +222,14 @@ function create_config( )
     "stats",
     "anti_spam",
     "wiki",
-    "qr",
-    "tex",
-    "payamresan",
     "mylink",
     "remmsg",
     "shortlink",
     "bot_on_off",
     "lock_fwd",
     "sticker",
-    "st",
     "tr",
     "setwlc",
-    "getbye",
-    "setbye",
-    "insta",
     "plugins",
     "getplug",
     "linkpv",
@@ -486,15 +479,6 @@ will return group ban list
 !wiki [text]
 search in Wikipedia.For mor information send this command: !wiki
 
-!qr [text]
-Just write English in text.Send a Qr code for your text
-
-!tex [text]
-Convert your text to image
-
-!gif [term] Or !giphy [term]
-Just write English in term.Send a gif for your term
-
 !calc [expression]
 Evaluates the expression and sends the result
 
@@ -594,13 +578,11 @@ Sets the chat photo
 Sets the chat rules
 
 !setwlc
-!setbye (rules) [your goodbye]
-Set welcome and goodbye for your group
+Set welcome for your group
 Learning in Channel: @TelePlus
 
 !delwlc
-!delbye
-Delete your welcome and bye
+Delete your welcome
 
 !setabout
 Sets the about section in chat info(members list)
@@ -698,17 +680,8 @@ Returns group logs
 !wiki [text]
 search in Wikipedia.For mor information send this command: !wiki
 
-!qr [text]
-Just write English in text.Send a Qr code for your text
-
-!tex [text]
-Convert your text to image
-
 !weather [city]
 Show weather of city
-
-!insta [your id]
-Show your instagram
 
 !aparat [search]
 Search in aparat
@@ -724,12 +697,6 @@ Show you mean of text
 
 !sticker [text] [color] [font]
 example: !sticker TelePlus red bold
-
-!sticker
-Convert picture to sticker by reply
-
-!image
-Convert sticker to picture by reply
 
 !calc [expression]
 Evaluates the expression and sends the result
