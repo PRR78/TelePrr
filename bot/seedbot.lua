@@ -229,6 +229,8 @@ function create_config( )
     "lock_fwd",
     "sticker",
     "tr",
+    "tophoto",
+    "tosticker",
     "setwlc",
     "plugins",
     "getplug",
@@ -698,6 +700,11 @@ Show you mean of text
 !sticker [text] [color] [font]
 example: !sticker TelePlus red bold
 
+!tosticker
+Convert photo to sticker by reply
+
+!tophoto
+Convert sticker to photo by reply
 !calc [expression]
 Evaluates the expression and sends the result
 
