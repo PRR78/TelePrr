@@ -54,7 +54,7 @@ function msg_valid(msg)
   -- Don't process outgoing messages
   if msg.out then
     print('\27[36mNot valid: msg from us\27[39m')
-    return false
+ --   return false
   end
 
   -- Before bot was started
@@ -80,7 +80,7 @@ function msg_valid(msg)
 
   if msg.from.id == our_id then
     print('\27[36mNot valid: Msg from our id\27[39m')
-    return false
+  --  return false
   end
 
   if msg.to.type == 'encr_chat' then
@@ -266,13 +266,16 @@ function create_config( )
 An advanced administration bot based on TG-CLI written in Lua
 
 Admin
+
 @PHAE2099 [Developer (SUDO)]
 
 Special thanks to
-Amin
-Hadi
+
+#Amin
+#Hadi
 
 Our channel
+
 @TelePlus [Persian]
 ]],
     help_text_realm = [[
@@ -356,6 +359,7 @@ This command will send text to [group_id]
 
 *Only admins and sudo can use kick,ban,unban,newlink,setphoto,setname,lock,unlock,set rules,set about and settings commands
 
+
 *Only admins and sudo can use res, setowner, commands
 ]],
     help_text = [[
@@ -403,11 +407,11 @@ return group id or user id
 !help
 Returns help text
 
-!lock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict|bots]
+!lock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict]
 Lock group settings
 *rtl: Kick user if Right To Left Char. is in name*
 
-!unlock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict|bots]
+!unlock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict]
 Unlock group settings
 *rtl: Kick user if Right To Left Char. is in name*
 
@@ -476,34 +480,14 @@ Returns group logs
 !banlist
 will return group ban list
 
-!wiki [text]
-search in Wikipedia.For mor information send this command: !wiki
-
-!calc [expression]
-Evaluates the expression and sends the result
-
-!webshot [url]
-Take an screenshot of the web and send it back to you
-
-!time [area]
-Displays the local time in that area
-
-!loc [location]
-Gets information about a location, maplink and overview
-
-!invite @PHAE2099
-Add bot admin (Just owner)
 
 **You can use "#", "!", or "/" to begin all commands
 
-
 *Only owner and mods can add bots in group
-
 
 *Only moderators and owner can use kick,ban,unban,newlink,link,setphoto,setname,lock,unlock,set rules,set about and settings commands
 
 *Only owner can use res,setowner,promote,demote and log commands
-
 ]],
 	help_text_super =[[
 SuperGroup Commands:
@@ -619,7 +603,7 @@ Unlock group settings
 *strict: disable strict settings enforcement (violating user will not be kicked)*
 
 !addword [Your word]
-Added a new word and delete this in group
+Added a new word in filterwords
 
 !remword [Your word]
 Clean the word in filterwords
@@ -672,7 +656,6 @@ Set chat visibility in pm !chats or !chatlist commands
 !res [username]
 Returns users name and id by username
 
-
 !log
 Returns group logs
 *Search for kick reasons using [#RTL|#spam|#lockmember]
@@ -703,6 +686,7 @@ Convert photo to sticker by reply
 
 !tophoto
 Convert sticker to photo by reply
+
 !calc [expression]
 Evaluates the expression and sends the result
 
@@ -718,6 +702,7 @@ Gets information about a location, maplink and overview
 !invite @PHAE2099
 Add bot admin (Just owner)
 
+
 **You can use "#", "!", or "/" to begin all commands
 
 *Only owner can add members to SuperGroup
@@ -728,7 +713,6 @@ Add bot admin (Just owner)
 *Only owner can use res, setowner, promote, demote, and log commands
 
 Channel: @TelePlus
-
 ]],
   }
   serialize_to_file(config, './data/config.lua')
