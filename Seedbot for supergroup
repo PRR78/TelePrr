@@ -364,18 +364,25 @@ This command will send text to [group_id]
 ]],
     help_text = [[
 Commands list :
+
 !kick [username|id]
 You can also do it by reply
+
 !ban [ username|id]
 You can also do it by reply
+
 !unban [id]
 You can also do it by reply
+
 !who
 Members list
+
 !modlist
 Moderators list
+
 !promote [username]
 Promote someone
+
 !demote [username]
 Demote someone
 !kickme
