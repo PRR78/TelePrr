@@ -229,6 +229,8 @@ function create_config( )
     "lock_fwd",
     "sticker",
     "tr",
+    "mutealltime",
+    "clean_delete",
     "tophoto",
     "tosticker",
     "setwlc",
@@ -592,6 +594,9 @@ Short your link
 !rules
 Retrieves the chat rules
 
+!clean deleted
+Clean delete accounts in your group
+
 !lock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict|fwd]
 Lock group settings
 *rtl: Delete msg if Right To Left Char. is in name*
@@ -621,6 +626,12 @@ mute group message types
 !unmute [all|audio|gifs|photo|video|service]
 Unmute group message types
 *A "unmuted" message type is not auto-deleted if posted
+
+!muteall [time]
+Mute your group in Specified time
+
+!unmuteall
+Unmute your group before time finished
 
 !setflood [value]
 Set [value] as flood sensitivity
