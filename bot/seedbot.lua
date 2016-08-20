@@ -236,6 +236,7 @@ function create_config( )
     "setwlc",
     "plugins",
     "getplug",
+    "clean_member", 
     "linkpv",
     "save",
     "delplug",
@@ -596,6 +597,9 @@ Retrieves the chat rules
 
 !clean deleted
 Clean delete accounts in your group
+
+!clean members
+Kick all members in group
 
 !lock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict|fwd]
 Lock group settings
