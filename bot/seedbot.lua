@@ -234,6 +234,8 @@ function create_config( )
     "tophoto",
     "tosticker",
     "setwlc",
+    "speedtest",
+    "getwlc",
     "plugins",
     "getplug",
     "clean_member", 
@@ -596,12 +598,6 @@ Short your link
 !rules
 Retrieves the chat rules
 
-!clean deleted
-Clean delete accounts in your group
-
-!clean members
-Kick all members in group
-
 !lock [links|flood|spam|Arabic|member|rtl|sticker|contacts|strict|fwd]
 Lock group settings
 *rtl: Delete msg if Right To Left Char. is in name*
@@ -632,8 +628,9 @@ mute group message types
 Unmute group message types
 *A "unmuted" message type is not auto-deleted if posted
 
-!muteall [time]
+!muteall 0h 0m 0s
 Mute your group in Specified time
+Learn in @TelePlus
 
 !unmuteall
 Unmute your group before time finished
@@ -658,7 +655,7 @@ Returns list of muted users in chat
 !banlist
 Returns SuperGroup ban list
 
-!clean [rules|about|modlist|mutelist]
+!clean [rules|about|modlist|mutelist|deleted|members]
 
 !del
 Deletes a message by reply
