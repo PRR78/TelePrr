@@ -623,7 +623,7 @@ mute group message types
 Unmute group message types
 *A "unmuted" message type is not auto-deleted if posted
 
-!muteall time
+!muteall [time]
 Mute your group in Specified time
 Learn in @TelePlus
 
