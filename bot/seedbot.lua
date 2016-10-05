@@ -227,12 +227,9 @@ function create_config( )
     "shortlink",
     "bot_on_off",
     "lock_fwd",
-    "sticker",
     "tr",
     "mutealltime",
     "clean_delete",
-    "tophoto",
-    "tosticker",
     "setwlc",
     "speedtest",
     "getwlc",
@@ -249,7 +246,6 @@ function create_config( )
     "info",
     "filter_word",
     "calculator",
-    "webshot",
     "time",
     "location",
     "owners",
@@ -277,7 +273,6 @@ Admin
 
 Special thanks to
 
-#Amin
 #Hadi
 
 Our channel
@@ -628,7 +623,7 @@ mute group message types
 Unmute group message types
 *A "unmuted" message type is not auto-deleted if posted
 
-!muteall 0h 0m 0s
+!muteall time
 Mute your group in Specified time
 Learn in @TelePlus
 
@@ -691,20 +686,8 @@ Translate from language 1 to language 2
 !mean [text]
 Show you mean of text
 
-!sticker [text] [color] [font]
-example: !sticker TelePlus red bold
-
-!tosticker
-Convert photo to sticker by reply
-
-!tophoto
-Convert sticker to photo by reply
-
 !calc [expression]
 Evaluates the expression and sends the result
-
-!webshot [url]
-Take an screenshot of the web and send it back to you
 
 !time [area]
 Displays the local time in that area
