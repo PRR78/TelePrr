@@ -21,7 +21,7 @@ memUsedPrc=$((($memUsed_b*100)/$memTotal_b))
 
 echo "🔱 TelePlus SERVER INFO:"
 echo "➖➖➖➖"
-echo "✅ Memory: $memUsed_m MB (1GB) \n💠 $memUsedPrc% used !"
+echo "✅ Memory: $memUsed_m MB (2GB) \n💠 $memUsedPrc% used !"
 echo "➖➖"
 echo '✅ CPU Usage : '"$CPUPer"'%'
 echo "➖➖"
