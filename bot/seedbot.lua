@@ -228,6 +228,7 @@ function create_config( )
     "bot_on_off",
     "lock_fwd",
     "tr",
+    "isup",
     "mutealltime",
     "clean_delete",
     "setwlc",
