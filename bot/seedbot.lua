@@ -232,6 +232,7 @@ function create_config( )
     "mutealltime",
     "clean_delete",
     "setwlc",
+    "welcome",
     "speedtest",
     "getwlc",
     "plugins",
