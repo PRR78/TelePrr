@@ -25,7 +25,7 @@ end
 data[tostring(msg.to.id)]['group_welcome'] = matches[2]..'\n\nGroup Rules :\n'..rules
         save_data(_config.moderation.data, data)
         
-        return 'Group welcome Set To :\n'..matches[2]
+        return 'Group welcome Seted To :\n'..matches[2]
 end
 if not is_owner(msg) then 
     return 'For Owners Only!'
@@ -47,12 +47,9 @@ end
 end
 return {
   patterns = {
-  "^[#!/]setwlc (rules) +(.*)$",
-  "^[#!/]setwlc +(.*)$",
-  "^[#!/](delwlc)$",
-  "^[Ss]etwlc (rules) +(.*)$",
-  "^[Ss]etwlc +(.*)$",
-  "^([Dd]elwlc)$",
+  "^[!/]setwlc (rules) +(.*)$",
+  "^[!/]setwlc +(.*)$",
+  "^[!/](delwlc)$"
   },
   run = run
 }
