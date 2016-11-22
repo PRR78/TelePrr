@@ -232,8 +232,6 @@ function create_config( )
     "mutealltime",
     "clean_delete",
     "setwlc",
-    "welcome",
-    "speedtest",
     "getwlc",
     "plugins",
     "getplug",
@@ -266,7 +264,7 @@ function create_config( )
     },
     sudo_users = {226123856,104557913,tonumber(our_id)},--Sudo users
     moderation = {data = 'data/moderation.json'},
-    about_text = [[TelePlus v4.1
+    about_text = [[TelePlus v4.5
 An advanced administration bot based on TG-CLI written in Lua
 
 Admin
@@ -617,11 +615,11 @@ Show the list of filterwords
 !clearbadwords
 Clean the list of filterwords
 
-!mute [all|audio|gifs|photo|video|service]
+!mute [all|audio|gifs|photo|video|documents|text]
 mute group message types
 *A "muted" message type is auto-deleted if posted
 
-!unmute [all|audio|gifs|photo|video|service]
+!unmute [all|audio|gifs|photo|video|documents|text]
 Unmute group message types
 *A "unmuted" message type is not auto-deleted if posted
 
@@ -652,7 +650,7 @@ Returns list of muted users in chat
 !banlist
 Returns SuperGroup ban list
 
-!clean [rules|about|modlist|mutelist|deleted|members]
+!clean [rules|about|modlist|mutelist|deleted|members|bots]
 
 !del
 Deletes a message by reply
