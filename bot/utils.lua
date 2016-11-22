@@ -2,18 +2,14 @@ URL = require "socket.url"
 http = require "socket.http"
 https = require "ssl.https"
 ltn12 = require "ltn12"
-
 serpent = (loadfile "./libs/serpent.lua")()
 feedparser = (loadfile "./libs/feedparser.lua")()
 json = (loadfile "./libs/JSON.lua")()
 mimetype = (loadfile "./libs/mimetype.lua")()
 redis = (loadfile "./libs/redis.lua")()
 JSON = (loadfile "./libs/dkjson.lua")()
-
 http.TIMEOUT = 10
-
 function get_receiver(msg)
-
   if msg.to.type == 'user' then
     return 'user#id'..msg.from.id
   end
@@ -27,14 +23,12 @@ function get_receiver(msg)
     return 'channel#id'..msg.to.id
   end
 end
-
 function is_chat_msg( msg )
   if msg.to.type == 'chat' then
     return true
   end
   return false
 end
-
 function string.random(length)
    local str = "";
    for i = 1, length do
@@ -43,7 +37,6 @@ function string.random(length)
    end
    return str;
 end
-
 function string.random(length)
    local str = "";
    for i = 1, length do
@@ -52,25 +45,21 @@ function string.random(length)
    end
    return str;
 end
-
 function string:split(sep)
   local sep, fields = sep or ":", {}
   local pattern = string.format("([^%s]+)", sep)
   self:gsub(pattern, function(c) fields[#fields+1] = c end)
   return fields
 end
-
 -- DEPRECATED
 function string.trim(s)
   print("string.trim(s) is DEPRECATED use string:trim() instead")
   return s:gsub("^%s*(.-)%s*$", "%1")
 end
-
 -- Removes spaces
 function string:trim()
   return self:gsub("^%s*(.-)%s*$", "%1")
 end
-
 function get_http_file_name(url, headers)
   -- Eg: foo.var
   local file_name = url:match("[^%w]+([%.%w]+)$")
@@ -78,9 +67,7 @@ function get_http_file_name(url, headers)
   file_name = file_name or url:match("[^%w]+(%w+)[^%w]+$")
   -- Random name, hope content-type works
   file_name = file_name or str:random(5)
-
   local content_type = headers["content-type"]
-
   local extension = nil
   if content_type then
     extension = mimetype.get_mime_extension(content_type)
@@ -88,61 +75,47 @@ function get_http_file_name(url, headers)
   if extension then
     file_name = file_name.."."..extension
   end
-
   local disposition = headers["content-disposition"]
   if disposition then
     -- attachment; filename=CodeCogsEqn.png
     file_name = disposition:match('filename=([^;]+)') or file_name
   end
-
   return file_name
 end
-
 --  Saves file to /tmp/. If file_name isn't provided,
 -- will get the text after the last "/" for filename
 -- and content-type for extension
 function download_to_file(url, file_name)
   print("url to download: "..url)
-
   local respbody = {}
   local options = {
     url = url,
     sink = ltn12.sink.table(respbody),
     redirect = true
   }
-
   -- nil, code, headers, status
   local response = nil
-
   if url:starts('https') then
     options.redirect = false
     response = {https.request(options)}
   else
     response = {http.request(options)}
   end
-
   local code = response[2]
   local headers = response[3]
   local status = response[4]
-
   if code ~= 200 then return nil end
-
   file_name = file_name or get_http_file_name(url, headers)
-
   local file_path = "data/tmp/"..file_name
   print("Saved to: "..file_path)
-
   file = io.open(file_path, "w+")
   file:write(table.concat(respbody))
   file:close()
-
   return file_path
 end
-
 function vardump(value)
   print(serpent.block(value, {comment=false}))
 end
-
 -- taken from http://stackoverflow.com/a/11130774/3163199
 function scandir(directory)
   local i, t, popen = 0, {}, io.popen
@@ -152,7 +125,6 @@ function scandir(directory)
   end
   return t
 end
-
 -- http://www.lua.org/manual/5.2/manual.html#pdf-io.popen
 function run_command(str)
   local cmd = io.popen(str)
@@ -160,7 +132,6 @@ function run_command(str)
   cmd:close()
   return result
 end
-
 -- User has privileges
 function is_sudo(msg)
   local var = false
@@ -172,7 +143,6 @@ function is_sudo(msg)
   end
   return var
 end
-
 -- Returns the name of the sender
 function get_name(msg)
   local name = msg.from.first_name
@@ -181,7 +151,6 @@ function get_name(msg)
   end
   return name
 end
-
 -- Returns at table of lua files inside plugins
 function plugins_names( )
   local files = {}
@@ -193,7 +162,6 @@ function plugins_names( )
   end
   return files
 end
-
 -- Function name explains what it does.
 function file_exists(name)
   local f = io.open(name,"r")
@@ -204,7 +172,6 @@ function file_exists(name)
     return false
   end
 end
-
 -- Save into file the data serialized for lua.
 -- Set uglify true to minify the file.
 function serialize_to_file(data, file, uglify)
@@ -221,29 +188,24 @@ function serialize_to_file(data, file, uglify)
   file:write(serialized)
   file:close()
 end
-
 -- Returns true if the string is empty
 function string:isempty()
   return self == nil or self == ''
 end
-
 -- Returns true if the string is blank
 function string:isblank()
   self = self:trim()
   return self:isempty()
 end
-
 -- DEPRECATED!!!!!
 function string.starts(String, Start)
   print("string.starts(String, Start) is DEPRECATED use string:starts(text) instead")
   return Start == string.sub(String,1,string.len(Start))
 end
-
 -- Returns true if String starts with Start
 function string:starts(text)
   return text == string.sub(self,1,string.len(text))
 end
-
 -- Send image to user and delete it when finished.
 -- cb_function and cb_extra are optionals callback
 function _send_photo(receiver, file_path, cb_function, cb_extra)
@@ -255,14 +217,12 @@ function _send_photo(receiver, file_path, cb_function, cb_extra)
   -- Call to remove with optional callback
   send_photo(receiver, file_path, cb_function, cb_extra)
 end
-
 -- Download the image and send to receiver, it will be deleted.
 -- cb_function and cb_extra are optionals callback
 function send_photo_from_url(receiver, url, cb_function, cb_extra)
   -- If callback not provided
   cb_function = cb_function or ok_cb
   cb_extra = cb_extra or false
-
   local file_path = download_to_file(url, false)
   if not file_path then -- Error
     local text = 'Error downloading the image'
@@ -272,12 +232,10 @@ function send_photo_from_url(receiver, url, cb_function, cb_extra)
     _send_photo(receiver, file_path, cb_function, cb_extra)
   end
 end
-
 -- Same as send_photo_from_url but as callback function
 function send_photo_from_url_callback(cb_extra, success, result)
   local receiver = cb_extra.receiver
   local url = cb_extra.url
-
   local file_path = download_to_file(url, false)
   if not file_path then -- Error
     local text = 'Error downloading the image'
@@ -287,7 +245,6 @@ function send_photo_from_url_callback(cb_extra, success, result)
     _send_photo(receiver, file_path, ok_cb, false)
   end
 end
-
 --  Send multiple images asynchronous.
 -- param urls must be a table.
 function send_photos_from_url(receiver, urls)
@@ -298,7 +255,6 @@ function send_photos_from_url(receiver, urls)
   }
   send_photos_from_url_callback(cb_extra)
 end
-
 -- Use send_photos_from_url.
 -- This function might be difficult to understand.
 function send_photos_from_url_callback(cb_extra, success, result)
@@ -306,38 +262,31 @@ function send_photos_from_url_callback(cb_extra, success, result)
   local receiver = cb_extra.receiver
   local urls = cb_extra.urls
   local remove_path = cb_extra.remove_path
-
   -- The previously image to remove
   if remove_path ~= nil then
     os.remove(remove_path)
     print("Deleted: "..remove_path)
   end
-
   -- Nil or empty, exit case (no more urls)
   if urls == nil or #urls == 0 then
     return false
   end
-
   -- Take the head and remove from urls table
   local head = table.remove(urls, 1)
-
   local file_path = download_to_file(head, false)
   local cb_extra = {
     receiver = receiver,
     urls = urls,
     remove_path = file_path
   }
-
   -- Send first and postpone the others as callback
   send_photo(receiver, file_path, send_photos_from_url_callback, cb_extra)
 end
-
 -- Callback to remove a file
 function rmtmp_cb(cb_extra, success, result)
   local file_path = cb_extra.file_path
   local cb_function = cb_extra.cb_function or ok_cb
   local cb_extra = cb_extra.cb_extra
-
   if file_path ~= nil then
     os.remove(file_path)
     print("Deleted: "..file_path)
@@ -345,7 +294,6 @@ function rmtmp_cb(cb_extra, success, result)
   -- Finally call the callback
   cb_function(cb_extra, success, result)
 end
-
 -- Send document to user and delete it when finished.
 -- cb_function and cb_extra are optionals callback
 function _send_document(receiver, file_path, cb_function, cb_extra)
@@ -357,7 +305,6 @@ function _send_document(receiver, file_path, cb_function, cb_extra)
   -- Call to remove with optional callback
   send_document(receiver, file_path, rmtmp_cb, cb_extra)
 end
-
 -- Download the image and send to receiver, it will be deleted.
 -- cb_function and cb_extra are optionals callback
 function send_document_from_url(receiver, url, cb_function, cb_extra)
@@ -365,7 +312,6 @@ function send_document_from_url(receiver, url, cb_function, cb_extra)
   print("File path: "..file_path)
   _send_document(receiver, file_path, cb_function, cb_extra)
 end
-
 -- Parameters in ?a=1&b=2 style
 function format_http_params(params, is_get)
   local str = ''
@@ -384,7 +330,6 @@ function format_http_params(params, is_get)
   end
   return str
 end
-
 -- Check if user can use the plugin and warns user
 -- Returns true if user was warned and false if not warned (is allowed)
 function warns_user_not_allowed(plugin, msg)
@@ -397,7 +342,6 @@ function warns_user_not_allowed(plugin, msg)
     return false
   end
 end
-
 -- Check if user can use the plugin
 function user_allowed(plugin, msg)
   if plugin.privileged and not is_sudo(msg) then
@@ -405,8 +349,6 @@ function user_allowed(plugin, msg)
   end
   return true
 end
-
-
 function send_order_msg(destination, msgs)
    local cb_extra = {
       destination = destination,
@@ -414,7 +356,6 @@ function send_order_msg(destination, msgs)
    }
    send_order_msg_callback(cb_extra, true)
 end
-
 function send_order_msg_callback(cb_extra, success, result)
    local destination = cb_extra.destination
    local msgs = cb_extra.msgs
@@ -455,7 +396,6 @@ function send_order_msg_callback(cb_extra, success, result)
       end
    end
 end
-
 -- Same as send_large_msg_callback but friendly params
 function send_large_msg(destination, text)
   local cb_extra = {
@@ -464,7 +404,6 @@ function send_large_msg(destination, text)
   }
   send_large_msg_callback(cb_extra, true)
 end
-
 -- If text is longer than 4096 chars, send multiple msg.
 -- https://core.telegram.org/method/messages.sendMessage
 function send_large_msg_callback(cb_extra, success, result)
@@ -476,23 +415,18 @@ function send_large_msg_callback(cb_extra, success, result)
   end
   local text_len = string.len(text)
   local num_msg = math.ceil(text_len / text_max)
-
   if num_msg <= 1 then
     send_msg(destination, text, ok_cb, false)
   else
-
     local my_text = string.sub(text, 1, 4096)
     local rest = string.sub(text, 4096, text_len)
-
     local cb_extra = {
       destination = destination,
       text = rest
     }
-
     send_msg(destination, my_text, send_large_msg_callback, cb_extra)
   end
 end
-
 function post_large_msg(destination, text)
   local cb_extra = {
     destination = destination,
@@ -500,31 +434,24 @@ function post_large_msg(destination, text)
   }
   post_large_msg_callback(cb_extra, true)
 end
-
 function post_large_msg_callback(cb_extra, success, result)
   local text_max = 4096
-
   local destination = cb_extra.destination
   local text = cb_extra.text
   local text_len = string.len(text)
   local num_msg = math.ceil(text_len / text_max)
-
   if num_msg <= 1 then
     post_msg(destination, text, ok_cb, false)
   else
-
     local my_text = string.sub(text, 1, 4096)
     local rest = string.sub(text, 4096, text_len)
-
     local cb_extra = {
       destination = destination,
       text = rest
     }
-
     post_msg(destination, my_text, post_large_msg_callback, cb_extra)
   end
 end
-
 -- Returns a table with matches or nil
 function match_pattern(pattern, text, lower_case)
   if text then
@@ -540,7 +467,6 @@ function match_pattern(pattern, text, lower_case)
   end
   -- nil
 end
-
 -- Function to read data from files
 function load_from_file(file, default_data)
   local f = io.open(file, "r+")
@@ -556,7 +482,6 @@ function load_from_file(file, default_data)
   end
   return loadfile (file)()
 end
-
 -- See http://stackoverflow.com/a/14899740
 function unescape_html(str)
   local map = {
@@ -574,7 +499,6 @@ function unescape_html(str)
   end)
   return new
 end
-
 -- Workarrond to format the message as previously was received
 function backward_msg_format (msg)
   for k,name in pairs({'from', 'to'}) do
@@ -592,7 +516,6 @@ function backward_msg_format (msg)
   end
   return msg
 end
-
 --Table Sort
 function pairsByKeys (t, f)
     local a = {}
@@ -608,8 +531,6 @@ function pairsByKeys (t, f)
 	return iter
 end
 --End Table Sort
-
-
 --Check if this chat is realm or not
 function is_realm(msg)
   local var = false
@@ -623,7 +544,6 @@ function is_realm(msg)
        return var
   end
 end
-
 --Check if this chat is a group or not
 function is_group(msg)
   local var = false
@@ -639,7 +559,6 @@ function is_group(msg)
        return var
   end
 end
-
 function is_super_group(msg)
   local var = false
   local data = load_data(_config.moderation.data)
@@ -654,7 +573,6 @@ function is_super_group(msg)
    end
   end
 end
-
 function is_log_group(msg)
   local var = false
   local data = load_data(_config.moderation.data)
@@ -668,18 +586,12 @@ function is_log_group(msg)
 	end
   end
 end
-
 function savelog(group, logtxt)
-
 local text = (os.date("[ %c ]=>  "..logtxt.."\n \n"))
 local file = io.open("./groups/logs/"..group.."log.txt", "a")
-
 file:write(text)
-
 file:close()
-
 end
-
 function user_print_name(user)
    if user.print_name then
       return user.print_name
@@ -693,7 +605,6 @@ function user_print_name(user)
    end
    return text
 end
-
 --Check if user is the owner of that group or not
 function is_owner(msg)
   local var = false
@@ -706,19 +617,16 @@ function is_owner(msg)
       end
     end
   end
-
   local hash = 'support'
   local support = redis:sismember(hash, user)
 	if support then
 		var = true
 	end
-
   if data['admins'] then
     if data['admins'][tostring(user)] then
       var = true
     end
   end
-
   for v,user in pairs(_config.sudo_users) do
     if user == msg.from.id then
         var = true
@@ -726,7 +634,6 @@ function is_owner(msg)
   end
   return var
 end
-
 function is_owner2(user_id, group_id)
   local var = false
   local data = load_data(_config.moderation.data)
@@ -738,19 +645,16 @@ function is_owner2(user_id, group_id)
       end
     end
   end
-
   local hash = 'support'
   local support = redis:sismember(hash, user)
 	if support then
 		var = true
 	end
-
   if data['admins'] then
     if data['admins'][tostring(user_id)] then
       var = true
     end
   end
-
   for v,user in pairs(_config.sudo_users) do
     if user == user_id then
         var = true
@@ -758,7 +662,6 @@ function is_owner2(user_id, group_id)
   end
   return var
 end
-
 --Check if user is admin or not
 function is_admin1(msg)
   local var = false
@@ -777,7 +680,6 @@ function is_admin1(msg)
   end
   return var
 end
-
 function is_admin2(user_id)
   local var = false
   local data = load_data(_config.moderation.data)
@@ -795,7 +697,6 @@ function is_admin2(user_id)
   end
   return var
 end
-
 --Check if user is the mod of that group or not
 function is_momod(msg)
   local var = false
@@ -808,7 +709,6 @@ function is_momod(msg)
       end
     end
   end
-
   if data[tostring(msg.to.id)] then
     if data[tostring(msg.to.id)]['set_owner'] then
       if data[tostring(msg.to.id)]['set_owner'] == tostring(user) then
@@ -816,19 +716,16 @@ function is_momod(msg)
       end
     end
   end
-
   local hash = 'support'
   local support = redis:sismember(hash, user)
 	if support then
 		var = true
 	end
-
   if data['admins'] then
     if data['admins'][tostring(user)] then
       var = true
     end
   end
-
   for v,user in pairs(_config.sudo_users) do
     if user == msg.from.id then
         var = true
@@ -836,7 +733,6 @@ function is_momod(msg)
   end
   return var
 end
-
 function is_momod2(user_id, group_id)
   local var = false
   local data = load_data(_config.moderation.data)
@@ -848,7 +744,6 @@ function is_momod2(user_id, group_id)
       end
     end
   end
-
   if data[tostring(group_id)] then
     if data[tostring(group_id)]['set_owner'] then
       if data[tostring(group_id)]['set_owner'] == tostring(user_id) then
@@ -856,19 +751,16 @@ function is_momod2(user_id, group_id)
       end
     end
   end
-
   local hash = 'support'
   local support = redis:sismember(hash, user_id)
 	if support then
 		var = true
 	end
-
   if data['admins'] then
     if data['admins'][tostring(user_id)] then
       var = true
     end
   end
-
   for v,user in pairs(_config.sudo_users) do
     if user == usert then
         var = true
@@ -876,7 +768,6 @@ function is_momod2(user_id, group_id)
   end
   return var
 end
-
 -- Returns the name of the sender
 function kick_user_any(user_id, chat_id)
   local channel = 'channel#id'..chat_id
@@ -885,7 +776,6 @@ function kick_user_any(user_id, chat_id)
   chat_del_user(chat, user, ok_cb, true)
   channel_kick(channel, user, ok_cb, false)
 end
-
 -- Returns the name of the sender
 function kick_user(user_id, chat_id)
   if tonumber(user_id) == tonumber(our_id) then -- Ignore bot
@@ -900,7 +790,6 @@ function kick_user(user_id, chat_id)
   chat_del_user(chat, user, ok_cb, false)
   channel_kick(channel, user, ok_cb, false)
 end
-
 -- Ban
 function ban_user(user_id, chat_id)
   if tonumber(user_id) == tonumber(our_id) then -- Ignore bot
@@ -915,7 +804,6 @@ function ban_user(user_id, chat_id)
   -- Kick from chat
   kick_user(user_id, chat_id)
 end
-
 -- Global ban
 function banall_user(user_id)
   if tonumber(user_id) == tonumber(our_id) then -- Ignore bot
@@ -928,14 +816,12 @@ function banall_user(user_id)
   local hash =  'gbanned'
   redis:sadd(hash, user_id)
 end
-
 -- Global unban
 function unbanall_user(user_id)
   --Save on redis
   local hash =  'gbanned'
   redis:srem(hash, user_id)
 end
-
 -- Check if user_id is banned in chat_id or not
 function is_banned(user_id, chat_id)
   --Save on redis
@@ -943,7 +829,6 @@ function is_banned(user_id, chat_id)
   local banned = redis:sismember(hash, user_id)
   return banned or false
 end
-
 -- Check if user_id is globally banned or not
 function is_gbanned(user_id)
   --Save on redis
@@ -951,7 +836,6 @@ function is_gbanned(user_id)
   local banned = redis:sismember(hash, user_id)
   return banned or false
 end
-
 -- Returns chat_id ban list
 function ban_list(chat_id)
 	local hash =  'banned:'..chat_id
@@ -969,7 +853,6 @@ function ban_list(chat_id)
 	end
 	return text
 end
-
 -- Returns globally ban list
 function banall_list()
 	local hash =  'gbanned'
@@ -987,27 +870,23 @@ function banall_list()
 	end
 	return text
 end
-
 -- Support Team
 function support_add(support_id)
   -- Save to redis
   local hash = 'support'
   redis:sadd(hash, support_id)
 end
-
 function is_support(support_id)
   --Save on redis
   local hash = 'support'
   local support = redis:sismember(hash, support_id)
   return support or false
 end
-
 function support_remove(support_id)
   --Save on redis
   local hash =  'support'
   redis:srem(hash, support_id)
 end
-
 -- Whitelist
 function is_whitelisted(user_id)
   --Save on redis
@@ -1015,7 +894,6 @@ function is_whitelisted(user_id)
   local is_whitelisted = redis:sismember(hash, user_id)
   return is_whitelisted or false
 end
-
 --Begin Chat Mutes
 function set_mutes(chat_id)
 	mutes = {[1]= "Audio: no",[2]= "Photo: no",[3]= "All: no",[4]="Documents: no",[5]="Text: no",[6]= "Video: no",[7]= "Gifs: no"}
@@ -1025,7 +903,6 @@ function set_mutes(chat_id)
 	redis:sadd(hash, setting)
 	end
 end
-
 function has_mutes(chat_id)
 	mutes = {[1]= "Audio: no",[2]= "Photo: no",[3]= "All: no",[4]="Documents: no",[5]="Text: no",[6]= "Video: no",[7]= "Gifs: no"}
 	local hash = 'mute:'..chat_id
@@ -1035,12 +912,10 @@ function has_mutes(chat_id)
 		return has_mutes or false
 	end
 end
-
 function rem_mutes(chat_id)
 	local hash = 'mute:'..chat_id
 	redis:del(hash)
 end
-
 function mute(chat_id, msg_type)
   local hash = 'mute:'..chat_id
   local yes = "yes"
@@ -1050,14 +925,12 @@ function mute(chat_id, msg_type)
   redis:srem(hash, old_setting)
   redis:sadd(hash, setting)
 end
-
 function is_muted(chat_id, msg_type)
 	local hash = 'mute:'..chat_id
 	local setting = msg_type
 	local muted = redis:sismember(hash, setting)
 	return muted or false
 end
-
 function unmute(chat_id, msg_type)
 	--Save on redis
 	local hash = 'mute:'..chat_id
@@ -1068,24 +941,20 @@ function unmute(chat_id, msg_type)
 	redis:srem(hash, old_setting)
 	redis:sadd(hash, setting)
 end
-
 function mute_user(chat_id, user_id)
   local hash = 'mute_user:'..chat_id
   redis:sadd(hash, user_id)
 end
-
 function is_muted_user(chat_id, user_id)
 	local hash = 'mute_user:'..chat_id
 	local muted = redis:sismember(hash, user_id)
 	return muted or false
 end
-
 function unmute_user(chat_id, user_id)
 	--Save on redis
 	local hash = 'mute_user:'..chat_id
 	redis:srem(hash, user_id)
 end
-
 -- Returns chat_id mute list
 function mutes_list(chat_id)
 	local hash =  'mute:'..chat_id
@@ -1096,7 +965,6 @@ function mutes_list(chat_id)
 	end
   return text
 end
-
 -- Returns chat_user mute list
 function muted_user_list(chat_id)
 	local hash =  'mute_user:'..chat_id
@@ -1114,13 +982,11 @@ function muted_user_list(chat_id)
 	end
 	return text
 end
-
 --End Chat Mutes
-
 -- /id by reply
 function get_message_callback_id(extra, success, result)
 	if type(result) == 'boolean' then
-		print('This is a old message!')
+		print('Old message :(')
 		return false
 	end
 	if result.to.type == 'chat' then
@@ -1130,11 +996,10 @@ function get_message_callback_id(extra, success, result)
 		return
 	end
 end
-
 -- kick by reply for mods and owner
 function Kick_by_reply(extra, success, result)
 	if type(result) == 'boolean' then
-		print('This is a old message!')
+		print('Old message :(')
 		return false
 	end
 	if result.to.type == 'chat' or result.to.type == 'channel' then
@@ -1151,11 +1016,10 @@ function Kick_by_reply(extra, success, result)
 		return
   end
 end
-
 -- Kick by reply for admins
 function Kick_by_reply_admins(extra, success, result)
 	if type(result) == 'boolean' then
-		print('This is a old message!')
+		print('Old message :(')
 		return false
 	end
 	if result.to.type == 'chat' or result.to.type == 'channel' then
@@ -1173,11 +1037,10 @@ function Kick_by_reply_admins(extra, success, result)
 		return
 	end
 end
-
 --Ban by reply for admins
 function ban_by_reply(extra, success, result)
 	if type(result) == 'boolean' then
-		print('This is a old message!')
+		print('Old message :(')
 		return false
 	end
 	if result.to.type == 'chat' or result.to.type == 'channel' then
@@ -1195,11 +1058,10 @@ function ban_by_reply(extra, success, result)
 		return
 	end
 end
-
 -- Ban by reply for admins
 function ban_by_reply_admins(extra, success, result)
 	if type(result) == 'boolean' then
-		print('This is a old message!')
+		print('Old message :(')
 		return false
 	end
 	if result.to.peer_type == 'chat' or result.to.peer_type == 'channel' then
@@ -1218,11 +1080,10 @@ function ban_by_reply_admins(extra, success, result)
 		return
 	end
 end
-
 -- Unban by reply
 function unban_by_reply(extra, success, result)
 	if type(result) == 'boolean' then
-		print('This is a old message!')
+		print('Old message :(')
 		return false
 	end
 	if result.to.type == 'chat' or result.to.type == 'channel' then
@@ -1241,7 +1102,7 @@ function unban_by_reply(extra, success, result)
 end
 function banall_by_reply(extra, success, result)
 	if type(result) == 'boolean' then
-		print('This is a old message!')
+		print('Old message :(')
 		return false
 	end
 	if result.to.type == 'chat' or result.to.type == 'channel' then
