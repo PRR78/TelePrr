@@ -234,7 +234,7 @@ function create_config( )
     "getwlc",
     "plugins",
     "getplug",
-    "google",   
+    "google",
     "linkpv",
     "save",
     "delplug",
