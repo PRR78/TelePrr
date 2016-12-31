@@ -234,7 +234,7 @@ function create_config( )
     "getwlc",
     "plugins",
     "getplug",
-    "clean_member", 
+    "google",   
     "linkpv",
     "save",
     "delplug",
@@ -242,7 +242,8 @@ function create_config( )
     "writer",
     "aparat",
     "buy",
-    "info",
+    "info", 
+    "addsudo",
     "filter_word",
     "calculator",
     "time",
@@ -649,12 +650,12 @@ Returns list of muted users in chat
 !banlist
 Returns SuperGroup ban list
 
-!clean [rules|about|modlist|mutelist|deleted|members|bots]
+!clean [rules|about|modlist|mutelist|deleted|bots]
 
 !del
 Deletes a message by reply
 
-!rmmsg [your number]
+!rmsg [your number]
 Deletes last chats.
 
 !public [yes|no]
@@ -672,7 +673,9 @@ search in Wikipedia.For mor information send this command: !wiki
 
 !weather [city]
 Show weather of city
-
+!google [subject] 
+Search in google
+		
 !aparat [search]
 Search in aparat
 
@@ -694,8 +697,8 @@ Displays the local time in that area
 !loc [location]
 Gets information about a location, maplink and overview
 
-!invite @PHAE2099
-Add bot admin (Just owner)
+!addsudo
+Add bot admin @PHAE2099 (Just owner)
 
 
 **You can use "#", "!", or "/" to begin all commands
